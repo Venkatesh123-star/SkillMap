@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMap | Map Your Future</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo" id="logo">Skill<span>Map</span></a>
+        <span class="nav-tag">YOUR CAREER COMPASS</span>
+
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <section id="homePage" class="page active">
+            <div class="hero">
+                <span class="eyebrow">YOUR FUTURE STARTS HERE</span>
+
+                <h1>Map your skills.<br>
+                    <span>Build your future.</span>
+                </h1>
+
+                <p>
+                    Discover what you know, identify what you need
+                    to learn, and create your own career roadmap.
+                </p>
+
+                <button class="btn primary" id="getStartedBtn">
+                    Build My Roadmap →
+                </button>
+
+                <div class="hero-stats">
+                    <div>
+                        <h3>05+</h3>
+                        <p>Career Paths</p>
+                    </div>
+                    <div>
+                        <h3>Personalized</h3>
+                        <p>Learning Plans</p>
+                    </div>
+                    <div>
+                        <h3>100%</h3>
+                        <p>Your Own Pace</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-heading">
+                <div>
+                    <span class="eyebrow">EXPLORE POSSIBILITIES</span>
+                    <h2>Choose your destination</h2>
+                </div>
+                <p>Choose a career to get started.</p>
+            </div>
+
+            <div id="careerCards" class="career-grid"></div>
+        </section>
+
+        <!-- SKILL ASSESSMENT PAGE -->
+        <section id="assessmentPage" class="page">
+            <button class="back-btn" id="backToHome">
+                ← Back to careers
+            </button>
+
+            <div class="page-heading">
+                <span class="eyebrow">STEP 01 / PERSONALIZATION</span>
+                <h1>Let's build your <span>SkillMap.</span></h1>
+                <p>Tell us where you're starting from.</p>
+            </div>
+
+            <div class="panel">
+                <label for="studentName">What should we call you?</label>
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your name"
+                    maxlength="40"
+                >
+
+                <label for="selectedCareer">Your career goal</label>
+                <select id="selectedCareer"></select>
+
+                <label for="experienceLevel">Your current level</label>
+                <select id="experienceLevel">
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+
+                <div class="skills-heading">
+                    <div>
+                        <label>Skills you already know</label>
+                        <p>Select all that apply.</p>
+                    </div>
+                    <span id="selectedCount">0 selected</span>
+                </div>
+
+                <div id="skillCheckboxes" class="checkbox-grid"></div>
+
+                <p id="formError" class="error-message"></p>
+
+                <button class="btn primary full-width" id="generateBtn">
+                    Generate My SkillMap →
+                </button>
+            </div>
+        </section>
+
+        <!-- ROADMAP PAGE -->
+        <section id="roadmapPage" class="page">
+            <button class="back-btn" id="backToAssessment">
+                ← Edit assessment
+            </button>
+
+            <div class="page-heading">
+                <span class="eyebrow">YOUR PERSONALIZED ROADMAP</span>
+                <h1 id="roadmapTitle">Your SkillMap</h1>
+                <p id="roadmapSubtitle"></p>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <span>Total skills</span>
+                    <h2 id="totalSkills">0</h2>
+                </div>
+                <div class="summary-card">
+                    <p>Completed Skills</p>
+                    <h2 id="knownSkills">0</h2>
+                </div>
+                <div class="summary-card">
+                    <span>Skills to learn</span>
+                    <h2 id="remainingSkills">0</h2>
+                </div>
+            </div>
+
+            <div class="panel roadmap-panel">
+                <div class="roadmap-header">
+                    <div>
+                        <span class="eyebrow">LEARNING PATH</span>
+                        <h2>Your skill roadmap</h2>
+                    </div>
+                    <span class="status-badge">Phase 1</span>
+                </div>
+
+                <p class="roadmap-note">
+                    Your selected skills are marked as known.
+                    The remaining skills are your learning targets.
+                </p>
+                <div class="progress-section">
+                <div class="progress-label">
+                 <span>Overall Progress</span>
+                  <span id="progressText">0%</span>
+                </div>
+
+                <div class="progress-track">
+                 <div id="progressBar" class="progress-bar"></div>
+                 </div>
+
+                 <p id="progressDetails">0 skills completed</p>
+
+                <p id="skillGapText">Skill gap: 100%</p>
+                  </div>
+                  
+<div class="storage-controls">
+    <button type="button" id="saveProgressBtn">
+        Save Progress
+    </button>
+
+    <button type="button" id="restoreProgressBtn">
+        Restore Progress
+    </button>
+
+    <button type="button" id="resetProgressBtn">
+        Reset Saved Progress
+    </button>
+
+    <p id="storageMessage" aria-live="polite"></p>
+</div>
+
+                  
+<div class="recommendation-section">
+    <h2>Smart Recommendation</h2>
+    <p class="recommendation-intro">
+        Your next learning step based on your roadmap progress.
+    </p>
+
+    <div class="recommendation-card">
+        <p class="recommendation-label">Recommended Next Skill</p>
+
+        <h3 id="recommendationSkill">Complete your assessment first</h3>
+
+        <p id="recommendationStage">Your recommended roadmap stage will appear here.</p>
+
+        <div class="recommendation-priority">
+            <span>Priority:</span>
+            <span id="recommendationPriority">--</span>
+        </div>
+
+        <p id="recommendationReason">
+            Complete your skills assessment to receive a recommendation.
+        </p>
+
+        <p id="recommendationPrerequisite"></p>
+    </div>
+</div>
+
+<div class="skill-explorer">
+    <h2>Skill Explorer</h2>
+    <p>Search and explore the skills in your selected career.</p>
+
+    <div class="explorer-controls">
+        <input
+            type="text"
+            id="skillSearch"
+            placeholder="Search skills, e.g. Java or SQL"
+        >
+
+        <select id="skillFilter">
+            <option value="all">All Skills</option>
+            <option value="not-started">Not Started</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+        </select>
+    </div>
+
+    <p id="explorerCount">Skills will appear here.</p>
+
+    <div id="explorerResults"></div>
+</div>
+
+<div id="skillDetailModal" class="skill-detail-modal">
+    <div class="skill-detail-card">
+        <button type="button" id="closeSkillDetails"
+            class="close-detail-btn">Close</button>
+
+        <h2 id="detailSkillName">Skill Details</h2>
+        <p id="detailSkillDescription"></p>
+        <p id="detailSkillDuration"></p>
+        <p id="detailSkillPrerequisite"></p>
+        <p id="detailSkillAdvice"></p>
+    </div>
+</div>
+
+
+
+<section class="learning-planner">
+    <h2>Personalized Learning Planner</h2>
+
+    <p class="planner-intro">
+        Create a learning schedule based on your remaining skills
+        and available study time.
+    </p>
+
+    <div class="planner-controls">
+        <label for="dailyHours">
+            Daily study hours
+        </label>
+
+        <select id="dailyHours">
+            <option value="1">1 hour per day</option>
+            <option value="2" selected>2 hours per day</option>
+            <option value="3">3 hours per day</option>
+            <option value="4">4 hours per day</option>
+            <option value="5">5 hours per day</option>
+        </select>
+
+        <label for="hoursPerSkill">
+            Estimated hours per skill
+        </label>
+
+        <select id="hoursPerSkill">
+            <option value="2">2 hours</option>
+            <option value="4" selected>4 hours</option>
+            <option value="6">6 hours</option>
+            <option value="8">8 hours</option>
+        </select>
+
+        <button type="button" id="generatePlanBtn">
+            Generate Learning Plan
+        </button>
+    </div>
+
+    <div id="plannerSummary" class="planner-summary">
+        <div class="planner-stat">
+            <h3>Skills Remaining</h3>
+            <p id="plannerRemaining">0</p>
+        </div>
+
+        <div class="planner-stat">
+            <h3>Study Hours</h3>
+            <p id="plannerTotalHours">0</p>
+        </div>
+
+        <div class="planner-stat">
+            <h3>Estimated Days</h3>
+            <p id="plannerDays">0</p>
+        </div>
+    </div>
+
+    <p id="plannerMessage" aria-live="polite"></p>
+
+    <div id="weeklyPlan"></div>
+</section>
+
+
+<!-- PHASE 7: CAREER COMPARISON -->
+<section class="career-comparison">
+
+    <h2>Compare Career Paths</h2>
+
+    <p class="comparison-description">
+        Compare two careers to discover shared skills
+        and the additional skills you need to learn.
+    </p>
+
+    <div class="comparison-controls">
+
+        <div class="comparison-field">
+            <label for="sourceCareer">
+                Starting Career
+            </label>
+
+            <select id="sourceCareer">
+            </select>
+        </div>
+
+        <div class="comparison-field">
+            <label for="targetCareer">
+                Target Career
+            </label>
+
+            <select id="targetCareer">
+            </select>
+        </div>
+
+    </div>
+
+    <p id="comparisonError" role="alert"></p>
+
+    <button id="compareCareersBtn" type="button">
+        Compare Careers
+    </button>
+
+    <div id="comparisonResults" hidden>
+
+        <div class="comparison-summary">
+
+            <div class="comparison-stat">
+                <span>Common Skills</span>
+                <h3 id="commonSkillCount">0</h3>
+            </div>
+
+            <div class="comparison-stat">
+                <span>Additional Target Skills</span>
+                <h3 id="targetOnlyCount">0</h3>
+            </div>
+
+        </div>
+
+        <p class="overlap-text">
+            Target career skill overlap:
+            <strong id="skillOverlap">0%</strong>
+        </p>
+
+        <div class="comparison-list">
+
+            <div class="comparison-list-card">
+                <h3>Shared Skills</h3>
+                <p>Skills present in both career paths.</p>
+                <ul id="commonSkillsList"></ul>
+            </div>
+
+            <div class="comparison-list-card">
+                <h3>Skills to Learn</h3>
+                <p>Target career skills not found in the starting career.</p>
+                <ul id="targetOnlySkillsList"></ul>
+            </div>
+
+        </div>
+
+        <div class="comparison-conclusion">
+            <h3>Your Career Transition</h3>
+            <p id="comparisonConclusion"></p>
+        </div>
+
+    </div>
+
+</section>
+<!-- END PHASE 7 -->
+
+
+                <div id="roadmapContainer"></div>
+                
+            </div>
+
+            <button class="btn secondary full-width" id="startAgainBtn">
+                Create Another Roadmap
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <p>SkillMap © 2026 · Learn with direction. Grow with purpose.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
