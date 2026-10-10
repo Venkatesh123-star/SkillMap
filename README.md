@@ -50,19 +50,13 @@ SkillMap/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/SkillMap.git
+git clone https://github.com/Venkatesh123-star/SkillMap.git
 cd SkillMap
 ```
 
-Replace `YOUR-USERNAME` with your GitHub username.
-
 ## 🌐 Live Demo
 
-**Live Website:** Add your published GitHub Pages URL here after deployment.
-
-Example format:
-
-`https://YOUR-USERNAME.github.io/SkillMap/`
+**Live Website:** "https://skillmap-gamma-five.vercel.app/"
 
 ## 💡 How It Works
 
